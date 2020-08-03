@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/03 09:13:32 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/03 09:29:57 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_file							*append_file_node(t_file **f_lst, t_file *node);
 int								handle_macho(t_file *file);
 
 /*
-** Symtab functions
+** Mach-O symtab functions
 */
 int								get_symtab_64(struct load_command *lc, char *ptr);
 int								get_symtab_32(struct load_command *lc, char *ptr);
