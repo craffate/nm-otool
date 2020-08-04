@@ -6,12 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/03 09:15:31 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/04 09:31:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm.h"
 
+#ifdef __APPLE__
 static int						handle_32(t_file *file)
 {
 	int							ret;
@@ -65,3 +66,14 @@ int								handle_macho(t_file *file)
 		ret = -1;
 	return (ret);
 }
+#elif __linux__
+int								handle_macho(t_file *file)
+{
+	int							ret;
+
+	ret = -1;
+	(void)file;
+	ft_putendl_fd("Mach-O file format is not supported on Linux", 2);
+	return (ret);
+}
+#endif

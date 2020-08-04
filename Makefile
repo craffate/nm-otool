@@ -31,6 +31,11 @@ ifneq (,$(findstring Darwin,$(OS)))
 	NM_SRCS += $(addsuffix .c, $(addprefix $(NM_MACHO_SRCS_PATH), $(NM_MACHO_SRCS_FILES)))
 	NM_OBJS += $(addsuffix .o, $(addprefix $(NM_MACHO_OBJS_PATH), $(NM_MACHO_SRCS_FILES)))
 endif
+ifneq (,$(findstring Linux,$(OS)))
+	NM_MACHO_SRCS_FILES = mach-o
+	NM_SRCS += $(addsuffix .c, $(addprefix $(NM_MACHO_SRCS_PATH), $(NM_MACHO_SRCS_FILES)))
+	NM_OBJS += $(addsuffix .o, $(addprefix $(NM_MACHO_OBJS_PATH), $(NM_MACHO_SRCS_FILES)))
+endif
 
 LIBFT = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
 
