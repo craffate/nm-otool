@@ -18,9 +18,22 @@
 # include <fcntl.h>
 # include <sys/mman.h>
 # include <sys/stat.h>
-# include <mach-o/loader.h>
-# include <mach-o/nlist.h>
+# ifdef __APPLE__
+#  include <mach-o/loader.h>
+#  include <mach-o/nlist.h>
+# endif
+# ifdef __linux__
+#  include <elf.h>
+# endif
 # include "libft.h"
+
+/*
+** Magic numbers
+*/
+# define MH_MAGIC		0xfeedface
+# define MH_CIGAM		0xcefaedfe
+# define MH_MAGIC_64	0xfeedfacf
+# define MH_CIGAM_64	0xcffaedfe
 
 typedef struct					s_file
 {
@@ -43,10 +56,12 @@ t_file							*append_file_node(t_file **f_lst, t_file *node);
 */
 int								handle_macho(t_file *file);
 
+# ifdef __APPLE__
 /*
 ** Mach-O symtab functions
 */
 int								get_symtab_64(struct load_command *lc, char *ptr);
 int								get_symtab_32(struct load_command *lc, char *ptr);
+# endif
 
 #endif
