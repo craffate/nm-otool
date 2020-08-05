@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/03 09:29:57 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 08:16:06 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 # define MH_MAGIC_64	0xfeedfacf
 # define MH_CIGAM_64	0xcffaedfe
 
+typedef struct					s_symbol
+{
+	unsigned char				type;
+	char						*name;
+	char						*value;
+	struct s_symbol				*next;
+}								t_symbol;
+
 typedef struct					s_file
 {
 	char						*name;
@@ -42,6 +50,7 @@ typedef struct					s_file
 	int							fd;
 	struct stat					stat;
 	char						*ptr;
+	struct s_symbol				*sym;
 	struct s_file				*next;
 }								t_file;
 
@@ -52,6 +61,13 @@ t_file							*create_file_node(const char *name);
 t_file							*append_file_node(t_file **f_lst, t_file *node);
 
 /*
+** Symbol list functions
+*/
+void							print_symbols(t_symbol *s_lst);
+t_symbol						*create_symbol_node(char *name, unsigned char type, unsigned int value);
+t_symbol						*append_symbol_node(t_symbol **s_lst, t_symbol *node);
+
+/*
 ** Mach-O functions
 */
 int								handle_macho(t_file *file);
@@ -60,8 +76,9 @@ int								handle_macho(t_file *file);
 /*
 ** Mach-O symtab functions
 */
-int								get_symtab_64(struct load_command *lc, char *ptr);
-int								get_symtab_32(struct load_command *lc, char *ptr);
+t_symbol						*get_symtab_64(struct load_command *lc, char *ptr);
+t_symbol						*get_symtab_32(struct load_command *lc, char *ptr);
+unsigned char					symbol_type(uint8_t n_type);
 # endif
 
 #endif

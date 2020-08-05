@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/04 09:31:23 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 08:16:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int						handle_32(t_file *file)
 	while (++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
-			get_symtab_64(lc, file->ptr);
+			file->sym = get_symtab_64(lc, file->ptr);
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
 	return (ret);
@@ -39,17 +39,21 @@ static int						handle_64(t_file *file)
 	unsigned int				idx;
 	struct mach_header_64		*header;
 	struct load_command			*lc;
+	t_file						*f_idx;
 
 	ret = 0;
 	idx = -1u;
 	header = (struct mach_header_64 *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
+	f_idx = file;
 	while (++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
-			get_symtab_64(lc, file->ptr);
+			file->sym = get_symtab_64(lc, file->ptr);
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
+	print_symbols(file->sym);
+	f_idx = NULL;
 	return (ret);
 }
 
