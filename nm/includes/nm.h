@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 09:52:37 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 11:55:44 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,33 @@
 # define MH_CIGAM		0xcefaedfe
 # define MH_MAGIC_64	0xfeedfacf
 # define MH_CIGAM_64	0xcffaedfe
+
+/*
+** Error strings
+*/
+
+# define ERR_NOAV_S			"No argument provided"
+# define ERR_MALLOC_S		"Memory allocation error"
+# define ERR_OPEN_S			"Error opening file"
+# define ERR_FSTAT_S		"Error gathering file information"
+# define ERR_MMAP_S			"Error mapping file to memory"
+# define ERR_MUNMAP_S		"Error unmapping file from memory"
+# define ERR_UNKNOWN_S		"Unknown error"
+
+/*
+** Error codes
+*/
+
+typedef enum			e_error
+{
+	ERR_NOAV,
+	ERR_MALLOC,
+	ERR_OPEN,
+	ERR_FSTAT,
+	ERR_MMAP,
+	ERR_MUNMAP,
+	ERR_UNKNOWN
+}						t_error;
 
 typedef struct			s_symbol
 {
@@ -89,5 +116,10 @@ t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
 unsigned char			symbol_type(uint8_t n_type);
 
 # endif
+
+/*
+** Error functions
+*/
+void					print_error(int errcode);
 
 #endif
