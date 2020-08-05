@@ -6,24 +6,28 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 09:47:56 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:28:01 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm.h"
 
-unsigned char				symbol_type(uint8_t n_type)
+unsigned char				symbol_type(uint8_t n_type, uint8_t n_sect)
 {
 	unsigned char			ret;
 
 	ret = '?';
-	n_type &= N_TYPE;
-	if (n_type & N_UNDF)
-		ret = 'u';
-	else if (n_type & N_INDR)
-		ret = 'i';
-	else if (n_type & N_ABS)
-		ret = 'a';
+	if (n_sect == NO_SECT)
+		ret = n_type & ~N_UNDF ? 'u' : 'a';
+	else
+	{
+		if (n_type & ~N_INDR)
+			ret = 'i';
+		if (n_sect == 1)
+			ret = 't';
+		if (n_sect == 9)
+			ret = 'b';
+	}
 	if (n_type & N_EXT || n_type & N_PEXT)
 		ret -= 32;
 	return (ret);

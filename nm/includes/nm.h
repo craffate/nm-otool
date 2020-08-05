@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 13:52:28 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 14:24:51 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int						handle_macho(t_file *file);
 
 t_symbol				*get_symtab_64(struct load_command *lc, char *ptr);
 t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
-unsigned char			symbol_type(uint8_t n_type);
+unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
 
 # endif
 
