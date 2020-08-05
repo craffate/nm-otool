@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 08:08:40 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 09:17:18 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ t_symbol					*get_symtab_32(struct load_command *lc, char *ptr)
 	nl = (struct nlist *)(ptr + sc->symoff);
 	stable = (char *)(ptr + sc->stroff);
 	while (++idx < sc->nsyms)
-	{
-		append_symbol_node(&ret, create_symbol_node(stable + nl[idx].n_un.n_strx,
-		nl[idx].n_type, nl[idx].n_value));
-	}
+		append_symbol_node(&ret, create_symbol_node_32(stable, nl[idx]));
 	return (ret);
 }
 
@@ -65,9 +62,6 @@ t_symbol					*get_symtab_64(struct load_command *lc, char *ptr)
 	nl = (struct nlist_64 *)(ptr + sc->symoff);
 	stable = (char *)(ptr + sc->stroff);
 	while (++idx < sc->nsyms)
-	{
-		append_symbol_node(&ret, create_symbol_node(stable + nl[idx].n_un.n_strx,
-		nl[idx].n_type, nl[idx].n_value));
-	}
+		append_symbol_node(&ret, create_symbol_node_64(stable, nl[idx]));
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 08:16:06 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 09:16:17 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@
 
 typedef struct					s_symbol
 {
-	unsigned char				type;
 	char						*name;
+	unsigned int				section;
+	unsigned char				type;
 	char						*value;
 	struct s_symbol				*next;
 }								t_symbol;
@@ -64,7 +65,8 @@ t_file							*append_file_node(t_file **f_lst, t_file *node);
 ** Symbol list functions
 */
 void							print_symbols(t_symbol *s_lst);
-t_symbol						*create_symbol_node(char *name, unsigned char type, unsigned int value);
+t_symbol						*create_symbol_node_32(char *stable, struct nlist nl);
+t_symbol						*create_symbol_node_64(char *stable, struct nlist_64 nl);
 t_symbol						*append_symbol_node(t_symbol **s_lst, t_symbol *node);
 
 /*

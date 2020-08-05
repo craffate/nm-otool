@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 07:46:22 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 08:26:35 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 09:43:50 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ void						print_symbols(t_symbol *s_lst)
 	{
 		ft_bzero(buf, 256);
 		type_buf[1] = s_idx->type;
-		ft_strcat(buf, s_idx->value);
+		if (ft_strlen(s_idx->value) > 1 && *s_idx->value != '0')
+		{
+			ft_strncpy(buf, "0000000000000000", 16 - ft_strlen(s_idx->value));
+			ft_strcat(buf, s_idx->value);
+		}
+		else
+			ft_strncpy(buf, "                ", 16);
 		ft_strcat(buf, type_buf);
 		ft_strcat(buf, s_idx->name);
 		ft_strcat(buf, "\n");
@@ -63,10 +69,10 @@ t_symbol					*append_symbol_node(t_symbol **s_lst, t_symbol *node)
 }
 
 /*
-** Allocates a t_symbol *, fills it and returns it.
+** Allocates a t_symbol *, fills it with 32-bit data and returns it.
 */
 
-t_symbol					*create_symbol_node(char *name, unsigned char type, unsigned int value)
+t_symbol					*create_symbol_node_32(char *stable, struct nlist nl)
 {
 	t_symbol				*ret;
 
@@ -74,10 +80,34 @@ t_symbol					*create_symbol_node(char *name, unsigned char type, unsigned int va
 		ret = NULL;
 	if (ret)
 	{
-			if (!(ret->name = ft_strdup(name)))
+			if (!(ret->name = ft_strdup(stable + nl.n_un.n_strx)))
 				ret = NULL;
-			ret->type = symbol_type(type);
-			if (!(ret->value = ft_lltoa_base(value, 16)))
+			ret->section = nl.n_sect;
+			ret->type = symbol_type(nl.n_type);
+			if (!(ret->value = ft_lltoa_base(nl.n_value, 16)))
+				ret = NULL;
+			ret->next = NULL;
+	}
+	return (ret);
+}
+
+/*
+** Allocates a t_symbol *, fills it with 64-bit data and returns it.
+*/
+
+t_symbol					*create_symbol_node_64(char *stable, struct nlist_64 nl)
+{
+	t_symbol				*ret;
+
+	if (!(ret = (t_symbol *)malloc(sizeof(t_symbol))))
+		ret = NULL;
+	if (ret)
+	{
+			if (!(ret->name = ft_strdup(stable + nl.n_un.n_strx)))
+				ret = NULL;
+			ret->section = nl.n_sect;
+			ret->type = symbol_type(nl.n_type);
+			if (!(ret->value = ft_lltoa_base(nl.n_value, 16)))
 				ret = NULL;
 			ret->next = NULL;
 	}
