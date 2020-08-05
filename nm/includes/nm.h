@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 13:48:07 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 13:52:28 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ typedef enum			e_error
 	ERR_UNKNOWN
 }						t_error;
 
+/*
+** Symbol data structure
+*/
+
 typedef struct			s_symbol
 {
 	char				*name;
@@ -73,6 +77,10 @@ typedef struct			s_symbol
 	char				*value;
 	struct s_symbol		*next;
 }						t_symbol;
+
+/*
+** File data structure
+*/
 
 typedef struct			s_file
 {
@@ -122,6 +130,7 @@ unsigned char			symbol_type(uint8_t n_type);
 /*
 ** Error functions
 */
+
 void					print_error(int errcode);
 
 #endif
