@@ -23,7 +23,7 @@ NM_MACHO_OBJS_PATH = $(addprefix $(NM_OBJS_PATH), $(NM_MACHO_PATH))
 NM_MACHO_SRCS_PATH = $(addprefix $(NM_SRCS_PATH), $(NM_MACHO_PATH))
 
 NM_SRCS_FILES = main file_list symbol_list
-NM_MACHO_SRCS_FILES = mach-o symtab
+NM_MACHO_SRCS_FILES = macho symtab
 
 NM_SRCS = $(addsuffix .c, $(addprefix $(NM_SRCS_PATH), $(NM_SRCS_FILES)))
 NM_OBJS = $(addsuffix .o, $(addprefix $(NM_OBJS_PATH), $(NM_SRCS_FILES)))
