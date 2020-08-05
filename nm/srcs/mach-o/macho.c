@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 09:49:00 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 13:50:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static int						handle_32(t_file *file)
 	idx = -1u;
 	header = (struct mach_header *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
-	while (++idx < header->ncmds)
+	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
-			file->sym = get_symtab_64(lc, file->ptr);
+			if (!(file->sym = get_symtab_64(lc, file->ptr)))
+				ret = ERR_INTERNAL;
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
 	return (ret);
@@ -47,10 +48,11 @@ static int						handle_64(t_file *file)
 	header = (struct mach_header_64 *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
 	f_idx = file;
-	while (++idx < header->ncmds)
+	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
-			file->sym = get_symtab_64(lc, file->ptr);
+			if (!(file->sym = get_symtab_64(lc, file->ptr)))
+				ret = ERR_INTERNAL;
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
 	print_symbols(file->sym);

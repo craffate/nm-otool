@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 10:11:33 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 13:25:00 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 13:48:49 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void					print_error(int errcode)
 {
 	static char			*arr[ERR_UNKNOWN + 1];
 
-	arr[ERR_NOAV] = ERR_NOAV_S;
-	arr[ERR_MALLOC] = ERR_MALLOC_S;
-	arr[ERR_OPEN] = ERR_OPEN_S;
-	arr[ERR_FSTAT] = ERR_FSTAT_S;
-	arr[ERR_MMAP] = ERR_MMAP_S;
-	arr[ERR_MUNMAP] = ERR_MUNMAP_S;
-	arr[ERR_UNKNOWN] = ERR_UNKNOWN_S;
-	ft_putendl_fd(arr[errcode], 2);
+	if (errcode)
+	{
+		arr[ERR_NOAV] = ERR_NOAV_S;
+		arr[ERR_MALLOC] = ERR_MALLOC_S;
+		arr[ERR_OPEN] = ERR_OPEN_S;
+		arr[ERR_FSTAT] = ERR_FSTAT_S;
+		arr[ERR_MMAP] = ERR_MMAP_S;
+		arr[ERR_MUNMAP] = ERR_MUNMAP_S;
+		arr[ERR_UNKNOWN] = ERR_UNKNOWN_S;
+		ft_putendl_fd(arr[errcode], 2);
+	}
 }

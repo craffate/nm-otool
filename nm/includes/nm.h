@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 11:55:44 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/05 13:48:07 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define ERR_FSTAT_S		"Error gathering file information"
 # define ERR_MMAP_S			"Error mapping file to memory"
 # define ERR_MUNMAP_S		"Error unmapping file from memory"
+# define ERR_INTERNAL_S		"Internal error"
 # define ERR_UNKNOWN_S		"Unknown error"
 
 /*
@@ -54,12 +55,13 @@
 
 typedef enum			e_error
 {
-	ERR_NOAV,
+	ERR_NOAV = 1,
 	ERR_MALLOC,
 	ERR_OPEN,
 	ERR_FSTAT,
 	ERR_MMAP,
 	ERR_MUNMAP,
+	ERR_INTERNAL,
 	ERR_UNKNOWN
 }						t_error;
 
