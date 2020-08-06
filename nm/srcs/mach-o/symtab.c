@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 14:28:01 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/06 08:33:40 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned char				symbol_type(uint8_t n_type, uint8_t n_sect)
 			ret = 'b';
 	}
 	if (n_type & N_EXT || n_type & N_PEXT)
-		ret -= 32;
+		ret = ft_toupper(ret);
 	return (ret);
 }
 
