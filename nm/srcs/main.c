@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:22:01 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/06 09:27:38 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/06 12:06:03 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ int					main(int ac, char **av)
 		if (!append_file_node(&f_lst, create_file_node(av_idx)))
 			ret = ERR_INTERNAL;
 	}
+	if (!av_idx)
+		if (!append_file_node(&f_lst, create_file_node(DEFAULT_FILE)))
+			ret = ERR_INTERNAL;
 	if (!ret)
 		ret = nm(f_lst);
-	print_error(ret);
+	if (ret)
+		print_error(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 14:24:51 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/06 12:03:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 #  include <elf.h>
 # endif
 # include "libft.h"
+
+/*
+** General constants
+*/
+
+# define DEFAULT_FILE	"a.out"
 
 /*
 ** Magic numbers
