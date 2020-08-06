@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:22:01 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 13:30:33 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/06 09:27:38 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static int			nm(t_file *f_lst)
 	int				ret;
 	t_file			*idx;
 
+	ret = 0;
 	idx = f_lst;
-	while (idx)
+	while (!ret && idx)
 	{
 		if (idx->magic == MH_MAGIC || idx->magic == MH_MAGIC_64 ||
 		idx->magic == MH_CIGAM || idx->magic == MH_CIGAM_64)
