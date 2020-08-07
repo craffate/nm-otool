@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/05 13:50:14 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/07 08:33:37 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int						handle_64(t_file *file)
 				ret = ERR_INTERNAL;
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
-	print_symbols(file->sym);
 	f_idx = NULL;
 	return (ret);
 }

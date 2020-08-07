@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:22:01 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/06 12:06:03 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/07 08:34:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int			nm(t_file *f_lst)
 			ret = handle_macho(idx);
 		idx = idx->next;
 	}
+	print_symbols(f_lst->sym);
 	return (ret);
 }
 
