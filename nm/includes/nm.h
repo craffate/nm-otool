@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/06 12:03:14 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/11 02:32:30 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ t_file					*append_file_node(t_file **f_lst, t_file *node);
 ** Symbol list functions
 */
 
-void					print_symbols(t_symbol *s_lst);
 t_symbol				*create_symbol_node_32(char *st, struct nlist nl);
 t_symbol				*create_symbol_node_64(char *st, struct nlist_64 nl);
 t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *node);
@@ -138,5 +137,17 @@ unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
 */
 
 void					print_error(int errcode);
+
+/*
+** Sorting functions
+*/
+char					**init_symbols_buffer(t_symbol *s_lst);
+void					bubblesort_symbols(char **s_arr, size_t s_arr_si);
+
+/*
+** Printing functions
+*/
+void					print_symbols(t_symbol *s_lst);
+void					print_symbols_sorted(t_symbol *s_lst);
 
 #endif
