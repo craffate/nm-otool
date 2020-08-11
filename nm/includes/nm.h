@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/11 02:32:30 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/11 05:44:43 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define ERR_MMAP_S			"Error mapping file to memory"
 # define ERR_MUNMAP_S		"Error unmapping file from memory"
 # define ERR_INTERNAL_S		"Internal error"
+# define ERR_UNKNOWNFT_S	"Unknown filetype"
 # define ERR_UNKNOWN_S		"Unknown error"
 
 /*
@@ -68,6 +69,7 @@ typedef enum			e_error
 	ERR_MMAP,
 	ERR_MUNMAP,
 	ERR_INTERNAL,
+	ERR_UNKNOWNFT,
 	ERR_UNKNOWN
 }						t_error;
 
@@ -141,12 +143,14 @@ void					print_error(int errcode);
 /*
 ** Sorting functions
 */
+
 char					**init_symbols_buffer(t_symbol *s_lst);
 void					bubblesort_symbols(char **s_arr, size_t s_arr_si);
 
 /*
 ** Printing functions
 */
+
 void					print_symbols(t_symbol *s_lst);
 void					print_symbols_sorted(t_symbol *s_lst);
 
