@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 10:11:33 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/11 05:44:33 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/13 08:05:07 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm.h"
+#include "shared.h"
 
 void					print_error(int errcode)
 {

@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/07 08:33:37 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/13 08:12:05 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm.h"
+#include "shared.h"
 
 #ifdef __APPLE__
 

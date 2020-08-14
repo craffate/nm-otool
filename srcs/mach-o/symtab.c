@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/06 08:33:40 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/13 08:12:10 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm.h"
+#include "shared.h"
 
 unsigned char				symbol_type(uint8_t n_type, uint8_t n_sect)
 {
