@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:11:44 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/18 10:46:16 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct			s_file
 	struct stat			stat;
 	char				*ptr;
 	struct s_symbol		*sym;
+	struct s_section	*sec;
 	struct s_file		*next;
 }						t_file;
 
@@ -102,6 +103,19 @@ typedef struct			s_symbol
 }						t_symbol;
 
 /*
+** Section data structure
+*/
+
+typedef struct			s_section
+{
+	char				*name;
+	char				*seg_name;
+	unsigned int		addr;
+	unsigned int		align;
+	struct s_section	*next;
+}						t_section;
+
+/*
 ** File list functions
 */
 
@@ -117,10 +131,19 @@ t_symbol				*create_symbol_node_64(char *st, struct nlist_64 nl);
 t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *node);
 
 /*
+** Section list functions
+*/
+
+t_section				*create_section_node_32(struct section se);
+t_section				*create_section_node_64(struct section_64 se);
+t_section				*append_section_node(t_section **s_lst, t_section *node);
+
+/*
 ** Mach-O functions
 */
 
 int						handle_macho(t_file *file);
+int						handle_macho_sections(t_file *file);
 
 # ifdef __APPLE__
 
@@ -131,6 +154,13 @@ int						handle_macho(t_file *file);
 t_symbol				*get_symtab_64(struct load_command *lc, char *ptr);
 t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
 unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
+
+/*
+** Mach-O segment functions
+*/
+
+t_section					*get_section_64(struct load_command *lc, char *ptr);
+t_section					*get_section_32(struct load_command *lc, char *ptr);
 
 # endif
 

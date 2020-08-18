@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:12:05 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/18 10:35:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,15 @@ static int						handle_32(t_file *file)
 	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
-			if (!(file->sym = get_symtab_64(lc, file->ptr)))
+		{
+			if (!(file->sym = get_symtab_32(lc, file->ptr)))
 				ret = ERR_INTERNAL;
+		}
+		else if (lc->cmd == LC_SEGMENT)
+		{
+			if (!(file->sec = get_section_32(lc, file->ptr)))
+				ret = ERR_INTERNAL;
+		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
 	return (ret);
@@ -51,8 +58,15 @@ static int						handle_64(t_file *file)
 	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
+		{
 			if (!(file->sym = get_symtab_64(lc, file->ptr)))
 				ret = ERR_INTERNAL;
+		}
+		else if (lc->cmd == LC_SEGMENT_64)
+		{
+			if (!(file->sec = get_section_64(lc, file->ptr)))
+				ret = 0;
+		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
 	f_idx = NULL;
