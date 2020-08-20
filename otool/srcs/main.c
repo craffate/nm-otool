@@ -6,12 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 07:55:24 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 04:45:48 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:20:16 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "otool.h"
-
 
 static int			otool(t_file *f_lst)
 {

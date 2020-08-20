@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 07:46:22 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:08:10 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:28:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 ** Appends a node to s_lst and returns a pointer to the appended node.
 */
 
-t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *node)
+t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *n)
 {
 	t_symbol			*ret;
 
 	ret = *s_lst;
 	if (!ret)
 	{
-		*s_lst = node;
-		ret = node;
+		*s_lst = n;
+		ret = n;
 	}
 	else
 	{
 		while (ret->next)
 			ret = ret->next;
-		ret->next = node;
+		ret->next = n;
 		ret = ret->next;
 	}
 	return (ret);

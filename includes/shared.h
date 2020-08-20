@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 04:39:25 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:27:36 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct			s_section
 */
 
 t_file					*create_file_node(const char *name);
-t_file					*append_file_node(t_file **f_lst, t_file *node);
+t_file					*append_file_node(t_file **f_lst, t_file *n);
 
 /*
 ** Symbol list functions
@@ -130,7 +130,7 @@ t_file					*append_file_node(t_file **f_lst, t_file *node);
 
 t_symbol				*create_symbol_node_32(char *st, struct nlist nl);
 t_symbol				*create_symbol_node_64(char *st, struct nlist_64 nl);
-t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *node);
+t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *n);
 
 /*
 ** Section list functions
@@ -138,7 +138,7 @@ t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *node);
 
 t_section				*create_section_node_32(struct section se);
 t_section				*create_section_node_64(struct section_64 se);
-t_section				*append_section_node(t_section **s_lst, t_section *node);
+t_section				*append_section_node(t_section **s_lst, t_section *n);
 
 /*
 ** Mach-O functions

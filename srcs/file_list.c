@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:32:26 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:07:57 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:28:35 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 ** Appends node to f_lst and returns a pointer to the appended node
 */
 
-t_file					*append_file_node(t_file **f_lst, t_file *node)
+t_file					*append_file_node(t_file **f_lst, t_file *n)
 {
 	t_file				*ret;
 
 	ret = *f_lst;
 	if (!ret)
 	{
-		*f_lst = node;
-		ret = node;
+		*f_lst = n;
+		ret = n;
 	}
 	else
 	{
 		while (ret->next)
 			ret = ret->next;
-		ret->next = node;
+		ret->next = n;
 		ret = ret->next;
 	}
 	return (ret);

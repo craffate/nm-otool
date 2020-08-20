@@ -6,27 +6,27 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 09:02:56 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 04:39:19 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:28:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-t_section				*append_section_node(t_section **s_lst, t_section *node)
+t_section				*append_section_node(t_section **s_lst, t_section *n)
 {
 	t_section			*ret;
 
 	ret = *s_lst;
 	if (!ret)
 	{
-		*s_lst = node;
-		ret = node;
+		*s_lst = n;
+		ret = n;
 	}
 	else
 	{
 		while (ret->next)
 			ret = ret->next;
-		ret->next = node;
+		ret->next = n;
 		ret = ret->next;
 	}
 	return (ret);

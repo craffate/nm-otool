@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 05:08:14 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 05:19:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "otool.h"
 
-static void			hexdump_section(t_section *section, char *ptr)
+static void				hexdump_section(t_section *section, char *ptr)
 {
 	char				*ptr_idx;
 	unsigned int		idx;
@@ -39,7 +39,7 @@ static void			hexdump_section(t_section *section, char *ptr)
 
 void					print_text_section(t_section *s_lst, char *ptr)
 {
-	t_section		*s_idx;
+	t_section			*s_idx;
 
 	s_idx = s_lst;
 	while (s_idx)
