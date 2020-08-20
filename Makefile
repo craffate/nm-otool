@@ -29,7 +29,7 @@ MACHO_SRCS_PATH = $(addprefix $(SRCS_PATH), $(MACHO_PATH))
 
 SRCS_FILES = file_list error symbol_list section_list
 NM_SRCS_FILES = main sort print
-OTOOL_SRCS_FILES = main
+OTOOL_SRCS_FILES = main print
 MACHO_SRCS_FILES = macho symtab segment
 
 SRCS = $(addsuffix .c, $(addprefix $(SRCS_PATH), $(SRCS_FILES)))

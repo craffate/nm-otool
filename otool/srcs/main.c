@@ -6,11 +6,12 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 07:55:24 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 04:08:09 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 04:45:48 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "otool.h"
+
 
 static int			otool(t_file *f_lst)
 {
@@ -26,6 +27,8 @@ static int			otool(t_file *f_lst)
 			ret = handle_macho(idx);
 		idx = idx->next;
 	}
+	if (!ret)
+		print_text_section(f_lst->sec, f_lst->ptr);
 	return (ret);
 }
 
