@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/18 10:35:56 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 04:03:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int						handle_32(t_file *file)
 	unsigned int				idx;
 	struct mach_header			*header;
 	struct load_command			*lc;
+	t_section					*section;
 
 	ret = 0;
 	idx = -1u;
@@ -34,8 +35,8 @@ static int						handle_32(t_file *file)
 		}
 		else if (lc->cmd == LC_SEGMENT)
 		{
-			if (!(file->sec = get_section_32(lc, file->ptr)))
-				ret = ERR_INTERNAL;
+			if ((section = get_section_32(lc)))
+				file->sec = section;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
@@ -48,13 +49,12 @@ static int						handle_64(t_file *file)
 	unsigned int				idx;
 	struct mach_header_64		*header;
 	struct load_command			*lc;
-	t_file						*f_idx;
+	t_section					*section;
 
 	ret = 0;
 	idx = -1u;
 	header = (struct mach_header_64 *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
-	f_idx = file;
 	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
@@ -64,12 +64,11 @@ static int						handle_64(t_file *file)
 		}
 		else if (lc->cmd == LC_SEGMENT_64)
 		{
-			if (!(file->sec = get_section_64(lc, file->ptr)))
-				ret = 0;
+			if ((section = get_section_64(lc)))
+				file->sec = section;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
-	f_idx = NULL;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/18 10:46:16 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 01:46:13 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
 ** Mach-O segment functions
 */
 
-t_section					*get_section_64(struct load_command *lc, char *ptr);
-t_section					*get_section_32(struct load_command *lc, char *ptr);
+t_section				*get_section_64(struct load_command *lc);
+t_section				*get_section_32(struct load_command *lc);
 
 # endif
 
