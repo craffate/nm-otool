@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 01:46:13 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/20 04:31:04 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct			s_section
 	char				*name;
 	char				*seg_name;
 	unsigned int		addr;
+	unsigned int		size;
 	unsigned int		align;
 	struct s_section	*next;
 }						t_section;
