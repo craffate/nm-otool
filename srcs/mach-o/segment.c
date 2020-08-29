@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 08:49:57 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/29 03:25:44 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/29 04:11:33 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,33 @@
 t_segment						*get_segment_32(struct load_command *lc)
 {
 	t_segment					*ret;
+	unsigned int				idx;
 	struct segment_command		*sc;
+	struct section				*se;
 
 	ret = NULL;
+	idx = -1u;
 	sc = (struct segment_command *)lc;
+	se = (struct section *)(((void *)sc) +
+	sizeof(struct segment_command));
 	append_segment_node(&ret, create_segment_node_32(*sc));
+	ret->sec = get_section_32(lc);
 	return (ret);
 }
 
 t_segment						*get_segment_64(struct load_command *lc)
 {
 	t_segment					*ret;
+	unsigned int				idx;
 	struct segment_command_64	*sc;
+	struct section_64			*se;
 
 	ret = NULL;
+	idx = -1u;
 	sc = (struct segment_command_64 *)lc;
+	se = (struct section_64 *)(((void *)sc) +
+	sizeof(struct segment_command_64));
 	append_segment_node(&ret, create_segment_node_64(*sc));
+	ret->sec = get_section_64(lc);
 	return (ret);
 }
