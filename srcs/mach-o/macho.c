@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 04:22:56 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/29 03:22:38 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int						handle_32(t_file *file)
 	unsigned int				idx;
 	struct mach_header			*header;
 	struct load_command			*lc;
-	t_section					*section;
 
 	ret = 0;
 	idx = -1u;
@@ -35,9 +34,8 @@ static int						handle_32(t_file *file)
 		}
 		else if (lc->cmd == LC_SEGMENT)
 		{
-			if ((section = get_section_32(lc)))
-				if (!ft_strcmp(section->seg_name, "__TEXT"))
-					file->sec = section;
+			if (!(file->seg = get_segment_32(lc)))
+				ret = ERR_INTERNAL;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
@@ -50,7 +48,6 @@ static int						handle_64(t_file *file)
 	unsigned int				idx;
 	struct mach_header_64		*header;
 	struct load_command			*lc;
-	t_section					*section;
 
 	ret = 0;
 	idx = -1u;
@@ -65,9 +62,8 @@ static int						handle_64(t_file *file)
 		}
 		else if (lc->cmd == LC_SEGMENT_64)
 		{
-			if ((section = get_section_64(lc)))
-				if (!ft_strcmp(section->seg_name, "__TEXT"))
-					file->sec = section;
+			if (!(file->seg = get_segment_64(lc)))
+				ret = ERR_INTERNAL;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}

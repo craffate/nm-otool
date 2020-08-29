@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 05:27:36 by craffate         ###   ########.fr       */
+/*   Updated: 2020/08/29 03:19:15 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,28 @@ typedef struct			s_file
 	int					fd;
 	struct stat			stat;
 	char				*ptr;
+	struct s_segment	*seg;
 	struct s_symbol		*sym;
-	struct s_section	*sec;
 	struct s_file		*next;
 }						t_file;
+
+/*
+** Segment data structure
+*/
+
+typedef struct			s_segment
+{
+	uint32_t			cmd;
+	uint32_t			cmdsize;
+	char				*name;
+	unsigned int		vmaddr;
+	unsigned int		vmsize;
+	unsigned int		offset;
+	unsigned int		size;
+	uint32_t			nsects;
+	struct s_section	*sec;
+	struct s_segment	*next;
+}						t_segment;
 
 /*
 ** Symbol data structure
@@ -125,6 +143,14 @@ t_file					*create_file_node(const char *name);
 t_file					*append_file_node(t_file **f_lst, t_file *n);
 
 /*
+** Segment list functions
+*/
+
+t_segment				*append_segment_node(t_segment **s_lst, t_segment *n);
+t_segment				*create_segment_node_32(struct segment_command sc);
+t_segment				*create_segment_node_64(struct segment_command_64 sc);
+
+/*
 ** Symbol list functions
 */
 
@@ -158,11 +184,18 @@ t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
 unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
 
 /*
-** Mach-O segment functions
+** Mach-O section functions
 */
 
 t_section				*get_section_64(struct load_command *lc);
 t_section				*get_section_32(struct load_command *lc);
+
+/*
+** Mach-O segment functions
+*/
+
+t_segment				*get_segment_32(struct load_command *lc);
+t_segment				*get_segment_64(struct load_command *lc);
 
 # endif
 

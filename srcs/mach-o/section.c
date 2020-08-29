@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   segment.c                                          :+:      :+:    :+:   */
+/*   section.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/18 08:49:57 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/29 03:25:44 by craffate         ###   ########.fr       */
+/*   Created: 2020/08/29 03:18:33 by craffate          #+#    #+#             */
+/*   Updated: 2020/08/29 03:18:53 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-t_segment						*get_segment_32(struct load_command *lc)
+t_section						*get_section_32(struct load_command *lc)
 {
-	t_segment					*ret;
+	t_section					*ret;
+	unsigned int				idx;
 	struct segment_command		*sc;
+	struct section				*se;
 
 	ret = NULL;
+	idx = -1u;
 	sc = (struct segment_command *)lc;
-	append_segment_node(&ret, create_segment_node_32(*sc));
+	se = (struct section *)(((void *)sc) + sizeof(struct segment_command));
+	while (++idx < sc->nsects)
+		append_section_node(&ret, create_section_node_32(se[idx]));
 	return (ret);
 }
 
-t_segment						*get_segment_64(struct load_command *lc)
+t_section						*get_section_64(struct load_command *lc)
 {
-	t_segment					*ret;
+	t_section					*ret;
+	unsigned int				idx;
 	struct segment_command_64	*sc;
+	struct section_64			*se;
 
 	ret = NULL;
+	idx = -1u;
 	sc = (struct segment_command_64 *)lc;
-	append_segment_node(&ret, create_segment_node_64(*sc));
+	se = (struct section_64 *)(((void *)sc) +
+	sizeof(struct segment_command_64));
+	while (++idx < sc->nsects)
+		append_section_node(&ret, create_section_node_64(se[idx]));
 	return (ret);
 }
