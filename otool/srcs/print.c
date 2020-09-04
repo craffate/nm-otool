@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 05:19:54 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/05 01:42:49 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,24 @@ static void				hexdump_section(t_section *section, char *ptr)
 	}
 }
 
-void					print_text_section(t_section *s_lst, char *ptr)
+void					print_text_section(t_segment *s_lst, char *ptr)
 {
-	t_section			*s_idx;
+	t_segment			*s_idx;
+	t_section			*se_idx;
+	char				buf[256];
 
 	s_idx = s_lst;
-	while (s_idx)
-	{
-		if (!ft_strcmp(s_idx->name, "__text"))
-			hexdump_section(s_idx, ptr);
+	while (s_idx && ft_strcmp(s_idx->name, "__TEXT"))
 		s_idx = s_idx->next;
-	}
+	se_idx = s_idx->sec;
+	while (se_idx && ft_strcmp(se_idx->name, "__text"))
+		se_idx = se_idx->next;
+	ft_bzero(buf, 256);
+	ft_strcat(buf, "Contents of (");
+	ft_strcat(buf, s_idx->name);
+	ft_strcat(buf, ",");
+	ft_strcat(buf, se_idx->name);
+	ft_strcat(buf, ") section");
+	ft_putendl(buf);
+	hexdump_section(se_idx, ptr);
 }
