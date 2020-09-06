@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/05 01:42:49 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/07 00:49:00 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ static void				hexdump_section(t_section *section, char *ptr)
 	{
 		ft_bzero(buffer, 1024);
 		c = ptr_idx[idx];
+		if (!((idx) % 16 && (idx) != section->size))
+		{
+			ft_strcat(buffer, ft_lltoa_base(section->addr + idx, 16));
+			if (ft_strlen(buffer) < 16)
+			{
+				ft_strncpy(buffer, "0000000000000000", 16 - ft_strlen(buffer));
+				ft_strcat(buffer, ft_lltoa_base(section->addr + idx, 16));
+			}
+			ft_strcat(buffer, "\t");
+		}
 		byte[1] = ("0123456789abcdef")[c % 16];
 		byte[0] = ("0123456789abcdef")[c / 16];
 		ft_strncat(buffer, byte, 2);
