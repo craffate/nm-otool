@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 01:52:53 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:42:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ void					print_text_section(t_segment *s_lst, char *ptr)
 	t_section			*se_idx;
 	char				buf[256];
 
-	s_idx = s_lst;
-	while (s_idx && ft_strcmp(s_idx->name, "__TEXT"))
-		s_idx = s_idx->next;
-	se_idx = s_idx->sec;
-	while (se_idx && ft_strcmp(se_idx->name, "__text"))
-		se_idx = se_idx->next;
+	if (!(s_idx = find_segment(s_lst, "__TEXT")))
+		s_idx = s_lst;
+	if (!(se_idx = find_section(s_idx->sec, "__text")))
+		return ;
 	ft_bzero(buf, 256);
 	ft_strcat(buf, "Contents of (");
 	ft_strcat(buf, s_idx->name);

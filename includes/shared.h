@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/29 03:19:15 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:43:03 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ t_file					*append_file_node(t_file **f_lst, t_file *n);
 t_segment				*append_segment_node(t_segment **s_lst, t_segment *n);
 t_segment				*create_segment_node_32(struct segment_command sc);
 t_segment				*create_segment_node_64(struct segment_command_64 sc);
+t_segment				*find_segment(t_segment *s_lst, const char *seg_name);
 
 /*
 ** Symbol list functions
@@ -165,6 +166,7 @@ t_symbol				*append_symbol_node(t_symbol **s_lst, t_symbol *n);
 t_section				*create_section_node_32(struct section se);
 t_section				*create_section_node_64(struct section_64 se);
 t_section				*append_section_node(t_section **s_lst, t_section *n);
+t_section				*find_section(t_section *se_lst, const char *name);
 
 /*
 ** Mach-O functions

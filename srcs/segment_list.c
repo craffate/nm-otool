@@ -6,11 +6,21 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 02:57:21 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/29 03:14:15 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:42:17 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
+
+t_segment				*find_segment(t_segment *s_lst, const char *seg_name)
+{
+	t_segment			*ret;
+
+	ret = s_lst;
+	while (ret && ft_strcmp(ret->name, seg_name))
+		ret = ret->next;
+	return (ret);
+}
 
 t_segment				*append_segment_node(t_segment **s_lst, t_segment *n)
 {
