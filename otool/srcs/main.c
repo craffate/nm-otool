@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 07:55:24 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/05 01:39:13 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/08 04:02:06 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,19 @@ static int			otool(t_file *f_lst)
 			ret = handle_macho(idx);
 		idx = idx->next;
 	}
-	ft_putstr(f_lst->name);
-	ft_putendl(":");
 	if (!ret)
-		print_text_section(f_lst->seg, f_lst->ptr);
+	{
+		idx = f_lst;
+		while (idx)
+		{
+			ft_putstr(idx->name);
+			ft_putendl(":");
+			print_text_section(idx->seg, idx->ptr);
+			if (idx->next)
+				ft_putchar('\n');
+			idx = idx->next;
+		}
+	}
 	return (ret);
 }
 
