@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 07:55:24 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/09 02:57:34 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/09 03:22:32 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int			otool(t_file *f_lst)
 		if (idx->magic == MH_MAGIC || idx->magic == MH_MAGIC_64 ||
 		idx->magic == MH_CIGAM || idx->magic == MH_CIGAM_64)
 			ret = handle_macho(idx);
+		else
+			ret = ERR_UNKNOWNFT;
 		idx = idx->next;
 	}
 	if (!ret)
