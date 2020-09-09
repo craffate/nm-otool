@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 07:55:24 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 04:02:06 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/09 02:57:34 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int			otool(t_file *f_lst)
 	int				ret;
 	t_file			*idx;
 
-	ret = ERR_UNKNOWNFT;
+	ret = 0;
 	idx = f_lst;
-	while (ret && idx)
+	while (!ret && idx)
 	{
 		if (idx->magic == MH_MAGIC || idx->magic == MH_MAGIC_64 ||
 		idx->magic == MH_CIGAM || idx->magic == MH_CIGAM_64)
@@ -34,6 +34,7 @@ static int			otool(t_file *f_lst)
 			ft_putstr(idx->name);
 			ft_putendl(":");
 			print_text_section(idx->seg, idx->ptr);
+			close(idx->fd);
 			if (idx->next)
 				ft_putchar('\n');
 			idx = idx->next;
