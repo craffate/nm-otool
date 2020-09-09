@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:22:01 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/27 05:41:20 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/09 03:25:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ static int			nm(t_file *f_lst)
 	t_file			*idx;
 	int				fname_switch;
 
-	ret = ERR_UNKNOWNFT;
+	ret = 0;
 	idx = f_lst;
-	while (idx)
+	while (!ret && idx)
 	{
 		if (idx->magic == MH_MAGIC || idx->magic == MH_MAGIC_64 ||
 		idx->magic == MH_CIGAM || idx->magic == MH_CIGAM_64)
 			ret = handle_macho(idx);
+		else
+			ret = ERR_UNKNOWNFT;
 		idx = idx->next;
 	}
 	if (!ret)
