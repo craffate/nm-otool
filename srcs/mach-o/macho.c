@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/05 01:38:54 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/09 03:00:07 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int						handle_32(t_file *file)
 		}
 		else if (lc->cmd == LC_SEGMENT)
 		{
-			if (!(file->seg = get_segment_32(lc)))
+			if (!(append_segment_node(&file->seg, get_segment_32(lc))))
 				ret = ERR_INTERNAL;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
