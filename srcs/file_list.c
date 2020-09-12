@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:32:26 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/20 05:28:35 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 08:18:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_file					*create_file_node(const char *name)
 			ret = NULL;
 		if (ret)
 		{
+			ret->ptr_end = ret->ptr + ret->stat.st_size;
 			ret->magic = *(unsigned int *)ret->ptr;
 			ret->next = NULL;
 		}

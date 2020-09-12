@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 02:43:03 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 08:22:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define ERR_MMAP_S			"Error mapping file to memory"
 # define ERR_MUNMAP_S		"Error unmapping file from memory"
 # define ERR_INTERNAL_S		"Internal error"
+# define ERR_CORRUPT_S		"Corrupt binary"
 # define ERR_UNKNOWNFT_S	"Unknown filetype"
 # define ERR_UNKNOWN_S		"Unknown error"
 
@@ -69,6 +70,7 @@ typedef enum			e_error
 	ERR_MMAP,
 	ERR_MUNMAP,
 	ERR_INTERNAL,
+	ERR_CORRUPT,
 	ERR_UNKNOWNFT,
 	ERR_UNKNOWN
 }						t_error;
@@ -84,6 +86,7 @@ typedef struct			s_file
 	int					fd;
 	struct stat			stat;
 	char				*ptr;
+	char				*ptr_end;
 	struct s_segment	*seg;
 	struct s_symbol		*sym;
 	struct s_file		*next;
@@ -174,6 +177,12 @@ t_section				*find_section(t_section *se_lst, const char *name);
 
 int						handle_macho(t_file *file);
 int						handle_macho_sections(t_file *file);
+
+/*
+** Error checking functions
+*/
+
+int					validate_range(void *p, void *start, void *end);
 
 # ifdef __APPLE__
 

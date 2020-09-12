@@ -27,7 +27,7 @@ OTOOL_SRCS_PATH = $(addprefix $(OTOOL_PATH), $(SRCS_PATH))
 MACHO_OBJS_PATH = $(addprefix $(OBJS_PATH), $(MACHO_PATH))
 MACHO_SRCS_PATH = $(addprefix $(SRCS_PATH), $(MACHO_PATH))
 
-SRCS_FILES = file_list error segment_list section_list symbol_list
+SRCS_FILES = file_list error segment_list section_list symbol_list validate
 NM_SRCS_FILES = main sort print
 OTOOL_SRCS_FILES = main print
 MACHO_SRCS_FILES = macho segment section symtab
