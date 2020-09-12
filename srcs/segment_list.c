@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 02:57:21 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 02:42:17 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 11:05:47 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_segment				*create_segment_node_32(struct segment_command sc)
 		ret->cmd = sc.cmd;
 		ret->cmdsize = sc.cmdsize;
 		ret->name = ft_strdup(sc.segname);
-		ret->vmaddr = sc.vmaddr;
-		ret->vmsize = sc.vmsize;
-		ret->offset = sc.fileoff;
-		ret->size = sc.filesize;
+		ret->vmaddr.vmaddr_32 = sc.vmaddr;
+		ret->vmsize.vmsize_32 = sc.vmsize;
+		ret->offset.offset_32 = sc.fileoff;
+		ret->size.size_32 = sc.filesize;
 		ret->nsects = sc.nsects;
 		ret->sec = NULL;
 		ret->next = NULL;
@@ -75,10 +75,10 @@ t_segment				*create_segment_node_64(struct segment_command_64 sc)
 		ret->cmd = sc.cmd;
 		ret->cmdsize = sc.cmdsize;
 		ret->name = ft_strdup(sc.segname);
-		ret->vmaddr = sc.vmaddr;
-		ret->vmsize = sc.vmsize;
-		ret->offset = sc.fileoff;
-		ret->size = sc.filesize;
+		ret->vmaddr.vmaddr_64 = sc.vmaddr;
+		ret->vmsize.vmsize_64 = sc.vmsize;
+		ret->offset.offset_64 = sc.fileoff;
+		ret->size.size_64 = sc.filesize;
 		ret->nsects = sc.nsects;
 		ret->sec = NULL;
 		ret->next = NULL;

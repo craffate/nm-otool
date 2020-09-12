@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 10:31:55 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 11:08:37 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,26 @@ typedef struct			s_segment
 	uint32_t			cmd;
 	uint32_t			cmdsize;
 	char				*name;
-	unsigned int		vmaddr;
-	unsigned int		vmsize;
-	unsigned int		offset;
-	unsigned int		size;
+	union
+	{
+		uint32_t		vmsize_32;
+		uint64_t		vmsize_64;
+	}					vmsize;
+	union
+	{
+		uint32_t		vmaddr_32;
+		uint64_t		vmaddr_64;
+	}					vmaddr;
+	union
+	{
+		uint32_t		offset_32;
+		uint64_t		offset_64;
+	}					offset;
+	union
+	{
+		uint32_t		size_32;
+		uint64_t		size_64;
+	}					size;
 	uint32_t			nsects;
 	struct s_section	*sec;
 	struct s_segment	*next;
@@ -187,7 +203,7 @@ int						handle_macho_sections(t_file *file);
 ** Error checking functions
 */
 
-int					validate_range(void *p, void *start, void *end);
+int						validate_range(void *p, void *start, void *end);
 
 # ifdef __APPLE__
 
