@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 08:32:27 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 08:36:37 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,14 @@ void					print_text_section(t_segment *s_lst, char *ptr)
 {
 	t_segment			*s_idx;
 	t_section			*se_idx;
-	char				buf[256];
+	char				buf[64];
 
 	if (!(s_idx = find_segment(s_lst, "__TEXT")))
 		s_idx = s_lst;
 	if (!(se_idx = find_section(s_idx->sec, "__text")))
 		return ;
-	ft_bzero(buf, 256);
-	ft_strcat(buf, "Contents of (");
-	ft_strcat(buf, s_idx->name);
-	ft_strcat(buf, ",");
-	ft_strcat(buf, se_idx->name);
-	ft_strcat(buf, ") section");
+	ft_bzero(buf, 64);
+	ft_strcat(buf, "Contents of (__TEXT,__text) section");
 	ft_putendl(buf);
 	hexdump_section(se_idx, ptr);
 }
