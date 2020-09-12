@@ -6,29 +6,29 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 04:40:51 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 02:42:23 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 08:32:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "otool.h"
 
-static void				print_addr(unsigned int align, unsigned int addr)
+static void				print_addr(unsigned int addr)
 {
 	char				*s;
 	char				*s2;
-	char				*s3;
 	unsigned int		idx;
 
 	idx = -1u;
 	s = (char *)malloc(sizeof(char) * 24);
-	s2 = ft_lltoa_base((2 * 2) * align, 2);
-	s3 = ft_lltoa_base(addr, 16);
-	while (16 - ft_strlen(s2) - ft_strlen(s3) > ++idx)
+	s2 = ft_lltoa_base(addr, 16);
+	ft_bzero(s, 24);
+	while (16 - ft_strlen(s2) > ++idx)
 		s[idx] = '0';
 	ft_strcat(s, s2);
-	ft_strcat(s, s3);
 	ft_strcat(s, "\t");
 	ft_putstr(s);
+	free(s2);
+	free(s);
 }
 
 static void				hexdump_section(t_section *section, char *ptr)
@@ -46,7 +46,7 @@ static void				hexdump_section(t_section *section, char *ptr)
 		ft_bzero(buffer, 1024);
 		c = ptr_idx[idx];
 		if (!((idx) % 16 && (idx) != section->size))
-			print_addr(section->align, section->addr + idx);
+			print_addr(section->addr + idx);
 		byte[1] = ("0123456789abcdef")[c % 16];
 		byte[0] = ("0123456789abcdef")[c / 16];
 		ft_strncat(buffer, byte, 2);
