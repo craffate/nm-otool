@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 09:02:56 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/08 02:42:33 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 11:12:58 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ t_section				*create_section_node_32(struct section se)
 			ret = NULL;
 		if (!(ret->seg_name = ft_strdup(se.segname)))
 			ret = NULL;
-		ret->addr = se.addr;
+		ret->addr.addr_32 = se.addr;
+		ret->size.size_32 = se.size;
 		ret->offset = se.offset;
-		ret->size = se.size;
 		ret->align = se.align;
 		ret->next = NULL;
 	}
@@ -75,9 +75,9 @@ t_section				*create_section_node_64(struct section_64 se)
 			ret = NULL;
 		if (!(ret->seg_name = ft_strdup(se.segname)))
 			ret = NULL;
-		ret->addr = se.addr;
+		ret->addr.addr_64 = se.addr;
+		ret->size.size_64 = se.size;
 		ret->offset = se.offset;
-		ret->size = se.size;
 		ret->align = se.align;
 		ret->next = NULL;
 	}

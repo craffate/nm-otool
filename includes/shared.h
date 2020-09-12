@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 11:08:37 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 11:12:12 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,18 @@ typedef struct			s_section
 {
 	char				*name;
 	char				*seg_name;
-	unsigned int		addr;
-	unsigned int		offset;
-	unsigned int		size;
-	unsigned int		align;
+	union
+	{
+		uint32_t		addr_32;
+		uint64_t		addr_64;
+	}					addr;
+	union
+	{
+		uint32_t		size_32;
+		uint64_t		size_64;
+	}					size;
+	uint32_t			offset;
+	uint32_t			align;
 	struct s_section	*next;
 }						t_section;
 
