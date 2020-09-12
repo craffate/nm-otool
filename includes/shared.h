@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 09:10:15 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 10:25:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define MH_CIGAM		0xcefaedfe
 # define MH_MAGIC_64	0xfeedfacf
 # define MH_CIGAM_64	0xcffaedfe
+# define FAT_MAGIC		0xcafebabe
+# define FAT_CIGAM		0xbebafeca
 
 /*
 ** Error strings
