@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 08:22:31 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 09:10:15 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct			s_file
 	struct stat			stat;
 	char				*ptr;
 	char				*ptr_end;
+	int					errno;
 	struct s_segment	*seg;
 	struct s_symbol		*sym;
 	struct s_file		*next;

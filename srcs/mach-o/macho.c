@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 08:22:41 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/12 09:11:42 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,52 +26,50 @@ static int						handle_32(t_file *file)
 	header = (struct mach_header *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
 	if (!validate_range(lc, file->ptr, file->ptr_end))
-		ret = ERR_CORRUPT;
+		file->errno = ERR_CORRUPT;
 	while (!ret && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
 		{
 			if (!(file->sym = get_symtab_32(lc, file->ptr)))
-				ret = ERR_INTERNAL;
+				file->errno = ERR_INTERNAL;
 		}
 		else if (lc->cmd == LC_SEGMENT)
 		{
 			if (!(append_segment_node(&file->seg, get_segment_32(lc))))
-				ret = ERR_INTERNAL;
+				file->errno = ERR_INTERNAL;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
-	return (ret);
+	return (file->errno);
 }
 
 static int						handle_64(t_file *file)
 {
-	int							ret;
 	unsigned int				idx;
 	struct mach_header_64		*header;
 	struct load_command			*lc;
 
-	ret = 0;
 	idx = -1u;
 	header = (struct mach_header_64 *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
 	if (!validate_range(lc, file->ptr, file->ptr_end))
-		ret = ERR_CORRUPT;
-	while (!ret && ++idx < header->ncmds)
+		file->errno = ERR_CORRUPT;
+	while (!file->errno && ++idx < header->ncmds)
 	{
 		if (lc->cmd == LC_SYMTAB)
 		{
 			if (!(file->sym = get_symtab_64(lc, file->ptr)))
-				ret = ERR_INTERNAL;
+				file->errno = ERR_INTERNAL;
 		}
 		else if (lc->cmd == LC_SEGMENT_64)
 		{
 			if (!(append_segment_node(&file->seg, get_segment_64(lc))))
-				ret = ERR_INTERNAL;
+				file->errno = ERR_INTERNAL;
 		}
 		lc = (struct load_command *)((void *)lc + lc->cmdsize);
 	}
-	return (ret);
+	return (file->errno);
 }
 
 int								handle_macho(t_file *file)
