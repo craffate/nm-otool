@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 08:57:04 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 10:34:06 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ typedef struct			s_segment
 typedef struct			s_symbol
 {
 	char				*name;
-	unsigned int		section;
+	uint8_t				section;
 	unsigned char		type;
 	char				*value;
 	struct s_symbol		*next;
