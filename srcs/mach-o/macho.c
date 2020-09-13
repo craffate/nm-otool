@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 09:12:42 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 09:29:13 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ static void						sanitize_symbols(t_file *file)
 			else
 				s_idx->type = 'S';
 		}
+		if (!(s_idx->type & N_EXT))
+			ft_tolower(s_idx->type);
 		s_idx = s_idx->next;
 	}
 }
