@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 11:12:12 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 08:14:04 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int						validate_range(void *p, void *start, void *end);
 
 t_symbol				*get_symtab_64(struct load_command *lc, char *ptr);
 t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
-unsigned char			symbol_type(uint8_t n_type, uint8_t n_sect);
+unsigned char			symbol_type(uint8_t n_type);
 
 /*
 ** Mach-O section functions

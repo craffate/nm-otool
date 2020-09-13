@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 02:31:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/11 03:04:08 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 08:08:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void					print_symbols_sorted(t_symbol *s_lst)
 	s_arr_si = 0;
 	while (s_idx)
 	{
-		s_arr[s_arr_si++] = get_symbol_buffer(*s_idx);
+		if (s_idx->type != '-')
+			s_arr[s_arr_si++] = get_symbol_buffer(*s_idx);
 		s_idx = s_idx->next;
 	}
 	bubblesort_symbols(s_arr, s_arr_si);

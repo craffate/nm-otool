@@ -6,30 +6,32 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:12:10 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 08:13:45 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
 
-unsigned char				symbol_type(uint8_t n_type, uint8_t n_sect)
+unsigned char				symbol_type(uint8_t n_type)
 {
 	unsigned char			ret;
 
 	ret = '?';
-	if (n_sect == NO_SECT)
-		ret = n_type & ~N_UNDF ? 'u' : 'a';
-	else
+	if (n_type & N_STAB)
+		ret = '-';
+	else if ((n_type & N_TYPE) == N_UNDF)
 	{
-		if (n_type & ~N_INDR)
-			ret = 'i';
-		if (n_sect == 1)
-			ret = 't';
-		if (n_sect == 9)
-			ret = 'b';
+		if (n_type & N_EXT)
+			ret = 'U';
+		else
+			ret = 'C';
 	}
-	if (n_type & N_EXT || n_type & N_PEXT)
-		ret = ft_toupper(ret);
+	else if ((n_type & N_TYPE) == N_ABS)
+		ret = 'A';
+	else if ((n_type & N_TYPE) == N_INDR)
+		ret = 'I';
+	else if ((n_type & N_TYPE) == N_SECT)
+		ret = '0';
 	return (ret);
 }
 
