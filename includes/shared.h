@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 08:14:04 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 08:57:04 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ t_section				*create_section_node_32(struct section se);
 t_section				*create_section_node_64(struct section_64 se);
 t_section				*append_section_node(t_section **s_lst, t_section *n);
 t_section				*find_section(t_section *se_lst, const char *name);
+t_section				*find_section_id(t_file *file, unsigned int id);
 
 /*
 ** Mach-O functions

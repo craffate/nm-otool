@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 09:11:42 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 09:12:42 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,30 @@ static int						handle_64(t_file *file)
 	return (file->errno);
 }
 
+static void						sanitize_symbols(t_file *file)
+{
+	t_symbol					*s_idx;
+	t_section					*se_idx;
+
+	s_idx = file->sym;
+	while (s_idx)
+	{
+		if (s_idx->type == '0')
+		{
+			se_idx = find_section_id(file, s_idx->section);
+			if (!ft_strcmp(se_idx->name, SECT_TEXT))
+				s_idx->type = 'T';
+			else if (!ft_strcmp(se_idx->name, SECT_DATA))
+				s_idx->type = 'D';
+			else if (!ft_strcmp(se_idx->name, SECT_BSS))
+				s_idx->type = 'B';
+			else
+				s_idx->type = 'S';
+		}
+		s_idx = s_idx->next;
+	}
+}
+
 int								handle_macho(t_file *file)
 {
 	int							ret;
@@ -83,6 +107,8 @@ int								handle_macho(t_file *file)
 		ret = handle_64(file);
 	else
 		ret = -1;
+	if (!ret)
+		sanitize_symbols(file);
 	return (ret);
 }
 

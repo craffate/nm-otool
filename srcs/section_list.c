@@ -6,11 +6,30 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 09:02:56 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 11:12:58 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/13 09:11:50 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared.h"
+
+t_section				*find_section_id(t_file *file, unsigned int id)
+{
+	t_segment			*seg_idx;
+	t_section			*se_idx;
+
+	seg_idx = file->seg->next;
+	se_idx = seg_idx->sec;
+	while (--id && seg_idx)
+	{
+		se_idx = se_idx->next;
+		if (!se_idx)
+		{
+			seg_idx = seg_idx->next;
+			se_idx = seg_idx->sec;
+		}
+	}
+	return (se_idx);
+}
 
 t_section				*find_section(t_section *se_lst, const char *name)
 {
