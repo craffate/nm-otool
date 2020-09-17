@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 10:34:06 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/17 18:04:31 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ typedef enum			e_error
 typedef struct			s_file
 {
 	char				*name;
-	unsigned int		magic;
+	uint32_t			magic;
+	uint32_t			filetype;
 	int					fd;
 	struct stat			stat;
 	char				*ptr;

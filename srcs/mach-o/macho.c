@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 09:29:13 by craffate         ###   ########.fr       */
+/*   Updated: 2020/09/17 18:08:00 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int						handle_32(t_file *file)
 	idx = -1u;
 	header = (struct mach_header *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
+	file->filetype = header->filetype;
 	if (!validate_range(lc, file->ptr, file->ptr_end))
 		file->errno = ERR_CORRUPT;
 	while (!ret && ++idx < header->ncmds)
@@ -53,6 +54,7 @@ static int						handle_64(t_file *file)
 	idx = -1u;
 	header = (struct mach_header_64 *)file->ptr;
 	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
+	file->filetype = header->filetype;
 	if (!validate_range(lc, file->ptr, file->ptr_end))
 		file->errno = ERR_CORRUPT;
 	while (!file->errno && ++idx < header->ncmds)
