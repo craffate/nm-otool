@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:31:20 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:48:50 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,10 +174,47 @@ typedef struct			s_section
 
 typedef struct			s_load_command
 {
-        uint32_t 		cmd;
-        uint32_t 		cmdsize;
+	uint32_t			cmd;
+	uint32_t			cmdsize;
 }						t_load_command;
 
+/*
+** Segment command data structure
+*/
+
+typedef struct			s_segment_command
+{
+	uint32_t			cmd;
+	uint32_t			cmdsize;
+	char				segname[16];
+	uint32_t			vmaddr;
+	uint32_t			vmsize;
+	uint32_t			fileoff;
+	uint32_t			filesize;
+	vm_prot_t			maxprot;
+	vm_prot_t			initprot;
+	uint32_t			nsects;
+	uint32_t			flags;
+}						t_segment_command;
+
+/*
+** 64-bit Segment command data structure
+*/
+
+typedef struct			s_segment_command_64
+{
+	uint32_t			cmd;
+	uint32_t			cmdsize;
+	char				segname[16];
+	uint64_t			vmaddr;
+	uint64_t			vmsize;
+	uint64_t			fileoff;
+	uint64_t			filesize;
+	vm_prot_t			maxprot;
+	vm_prot_t			initprot;
+	uint32_t			nsects;
+	uint32_t			flags;
+}						t_segment_command_64;
 
 /*
 ** File list functions
@@ -191,8 +228,8 @@ t_file					*append_file_node(t_file **f_lst, t_file *n);
 */
 
 t_segment				*append_segment_node(t_segment **s_lst, t_segment *n);
-t_segment				*create_segment_node_32(struct segment_command sc);
-t_segment				*create_segment_node_64(struct segment_command_64 sc);
+t_segment				*create_segment_node_32(t_segment_command sc);
+t_segment				*create_segment_node_64(t_segment_command_64 sc);
 t_segment				*find_segment(t_segment *s_lst, const char *seg_name);
 
 /*

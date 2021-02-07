@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 02:57:21 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:20:14 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:47:21 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_segment				*append_segment_node(t_segment **s_lst, t_segment *n)
 	return (ret);
 }
 
-t_segment				*create_segment_node_32(struct segment_command sc)
+t_segment				*create_segment_node_32(t_segment_command sc)
 {
 	t_segment			*ret;
 
@@ -64,7 +64,7 @@ t_segment				*create_segment_node_32(struct segment_command sc)
 	return (ret);
 }
 
-t_segment				*create_segment_node_64(struct segment_command_64 sc)
+t_segment				*create_segment_node_64(t_segment_command_64 sc)
 {
 	t_segment			*ret;
 
