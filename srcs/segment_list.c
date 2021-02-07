@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 02:57:21 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 11:05:47 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:20:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared.h"
+#include "nm_otool.h"
 
 t_segment				*find_segment(t_segment *s_lst, const char *seg_name)
 {

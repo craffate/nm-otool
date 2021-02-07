@@ -6,14 +6,14 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 09:18:07 by craffate          #+#    #+#             */
-/*   Updated: 2020/08/13 08:11:52 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:21:57 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NM_H
 # define NM_H
 
-# include "shared.h"
+# include "nm_otool.h"
 
 /*
 ** Sorting functions

@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 09:02:56 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 09:11:50 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:20:05 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared.h"
+#include "nm_otool.h"
 
 t_section				*find_section_id(t_file *file, unsigned int id)
 {

@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 07:46:22 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/13 08:14:31 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:20:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared.h"
+#include "nm_otool.h"
 
 /*
 ** Appends a node to s_lst and returns a pointer to the appended node.

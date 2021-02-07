@@ -18,12 +18,12 @@ SRCS_PATH = srcs/
 MACHO_PATH = mach-o/
 LIBFT_PATH = libft/
 LIBFT_INCS_PATH = $(addprefix $(LIBFT_PATH), $(INCS_PATH))
-NM_INCS_PATH = $(addprefix $(NM_PATH), $(INCS_PATH))
-NM_OBJS_PATH = $(addprefix $(NM_PATH), $(OBJS_PATH))
-NM_SRCS_PATH = $(addprefix $(NM_PATH), $(SRCS_PATH))
-OTOOL_INCS_PATH = $(addprefix $(OTOOL_PATH), $(INCS_PATH))
-OTOOL_OBJS_PATH = $(addprefix $(OTOOL_PATH), $(OBJS_PATH))
-OTOOL_SRCS_PATH = $(addprefix $(OTOOL_PATH), $(SRCS_PATH))
+NM_INCS_PATH = $(addprefix $(INCS_PATH), $(NM_PATH))
+NM_OBJS_PATH = $(addprefix $(OBJS_PATH), $(NM_PATH))
+NM_SRCS_PATH = $(addprefix $(SRCS_PATH), $(NM_PATH))
+OTOOL_INCS_PATH = $(addprefix $(INCS_PATH), $(OTOOL_PATH))
+OTOOL_OBJS_PATH = $(addprefix $(OBJS_PATH), $(OTOOL_PATH))
+OTOOL_SRCS_PATH = $(addprefix $(SRCS_PATH), $(OTOOL_PATH))
 MACHO_OBJS_PATH = $(addprefix $(OBJS_PATH), $(MACHO_PATH))
 MACHO_SRCS_PATH = $(addprefix $(SRCS_PATH), $(MACHO_PATH))
 
@@ -39,6 +39,7 @@ NM_SRCS = $(addsuffix .c, $(addprefix $(NM_SRCS_PATH), $(NM_SRCS_FILES)))
 NM_OBJS = $(addsuffix .o, $(addprefix $(NM_OBJS_PATH), $(NM_SRCS_FILES)))
 OTOOL_SRCS = $(addsuffix .c, $(addprefix $(OTOOL_SRCS_PATH), $(OTOOL_SRCS_FILES)))
 OTOOL_OBJS = $(addsuffix .o, $(addprefix $(OTOOL_OBJS_PATH), $(OTOOL_SRCS_FILES)))
+
 ifneq (,$(findstring Darwin,$(OS)))
 	MACHO_SRCS += $(addsuffix .c, $(addprefix $(MACHO_SRCS_PATH), $(MACHO_SRCS_FILES)))
 	MACHO_OBJS += $(addsuffix .o, $(addprefix $(MACHO_OBJS_PATH), $(MACHO_SRCS_FILES)))

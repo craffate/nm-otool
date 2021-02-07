@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 08:13:33 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/12 08:15:33 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:20:33 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared.h"
+#include "nm_otool.h"
 
 int					validate_range(void *p, void *start, void *end)
 {

@@ -6,11 +6,11 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 08:49:57 by craffate          #+#    #+#             */
-/*   Updated: 2020/09/05 01:38:11 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:21:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared.h"
+#include "nm_otool.h"
 
 t_segment						*get_segment_32(struct load_command *lc)
 {
