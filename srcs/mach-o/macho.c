@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:29:19 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:21:37 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:33:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int						handle_32(t_file *file)
 	int							ret;
 	unsigned int				idx;
 	struct mach_header			*header;
-	struct load_command			*lc;
+	t_load_command				*lc;
 
 	ret = 0;
 	idx = -1u;
 	header = (struct mach_header *)file->ptr;
-	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
+	lc = (t_load_command *)((void *)file->ptr + sizeof(*header));
 	file->filetype = header->filetype;
 	if (!validate_range(lc, file->ptr, file->ptr_end))
 		file->errno = ERR_CORRUPT;
@@ -40,7 +40,7 @@ static int						handle_32(t_file *file)
 			if (!(append_segment_node(&file->seg, get_segment_32(lc))))
 				file->errno = ERR_INTERNAL;
 		}
-		lc = (struct load_command *)((void *)lc + lc->cmdsize);
+		lc = (t_load_command *)((void *)lc + lc->cmdsize);
 	}
 	return (file->errno);
 }
@@ -49,11 +49,11 @@ static int						handle_64(t_file *file)
 {
 	unsigned int				idx;
 	struct mach_header_64		*header;
-	struct load_command			*lc;
+	t_load_command				*lc;
 
 	idx = -1u;
 	header = (struct mach_header_64 *)file->ptr;
-	lc = (struct load_command *)((void *)file->ptr + sizeof(*header));
+	lc = (t_load_command *)((void *)file->ptr + sizeof(*header));
 	file->filetype = header->filetype;
 	if (!validate_range(lc, file->ptr, file->ptr_end))
 		file->errno = ERR_CORRUPT;
@@ -69,7 +69,7 @@ static int						handle_64(t_file *file)
 			if (!(append_segment_node(&file->seg, get_segment_64(lc))))
 				file->errno = ERR_INTERNAL;
 		}
-		lc = (struct load_command *)((void *)lc + lc->cmdsize);
+		lc = (t_load_command *)((void *)lc + lc->cmdsize);
 	}
 	return (file->errno);
 }

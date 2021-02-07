@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 08:03:38 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:19:00 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:31:20 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,17 @@ typedef struct			s_section
 }						t_section;
 
 /*
+** Load command data structure
+*/
+
+typedef struct			s_load_command
+{
+        uint32_t 		cmd;
+        uint32_t 		cmdsize;
+}						t_load_command;
+
+
+/*
 ** File list functions
 */
 
@@ -215,31 +226,27 @@ int						handle_macho_sections(t_file *file);
 
 int						validate_range(void *p, void *start, void *end);
 
-# ifdef __APPLE__
-
 /*
 ** Mach-O symtab functions
 */
 
-t_symbol				*get_symtab_64(struct load_command *lc, char *ptr);
-t_symbol				*get_symtab_32(struct load_command *lc, char *ptr);
+t_symbol				*get_symtab_64(t_load_command *lc, char *ptr);
+t_symbol				*get_symtab_32(t_load_command *lc, char *ptr);
 unsigned char			symbol_type(uint8_t n_type);
 
 /*
 ** Mach-O section functions
 */
 
-t_section				*get_section_64(struct load_command *lc);
-t_section				*get_section_32(struct load_command *lc);
+t_section				*get_section_64(t_load_command *lc);
+t_section				*get_section_32(t_load_command *lc);
 
 /*
 ** Mach-O segment functions
 */
 
-t_segment				*get_segment_32(struct load_command *lc);
-t_segment				*get_segment_64(struct load_command *lc);
-
-# endif
+t_segment				*get_segment_32(t_load_command *lc);
+t_segment				*get_segment_64(t_load_command *lc);
 
 /*
 ** Error functions

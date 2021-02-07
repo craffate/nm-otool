@@ -6,13 +6,13 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 03:18:33 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:21:19 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:32:51 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm_otool.h"
 
-t_section						*get_section_32(struct load_command *lc)
+t_section						*get_section_32(t_load_command *lc)
 {
 	t_section					*ret;
 	unsigned int				idx;
@@ -28,7 +28,7 @@ t_section						*get_section_32(struct load_command *lc)
 	return (ret);
 }
 
-t_section						*get_section_64(struct load_command *lc)
+t_section						*get_section_64(t_load_command *lc)
 {
 	t_section					*ret;
 	unsigned int				idx;

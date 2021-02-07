@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 09:00:16 by craffate          #+#    #+#             */
-/*   Updated: 2021/02/07 09:21:28 by craffate         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:33:23 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ unsigned char				symbol_type(uint8_t n_type)
 	return (ret);
 }
 
-t_symbol					*get_symtab_32(struct load_command *lc, char *ptr)
+t_symbol					*get_symtab_32(t_load_command *lc, char *ptr)
 {
 	t_symbol				*ret;
 	unsigned int			idx;
@@ -53,7 +53,7 @@ t_symbol					*get_symtab_32(struct load_command *lc, char *ptr)
 	return (ret);
 }
 
-t_symbol					*get_symtab_64(struct load_command *lc, char *ptr)
+t_symbol					*get_symtab_64(t_load_command *lc, char *ptr)
 {
 	t_symbol				*ret;
 	unsigned int			idx;
